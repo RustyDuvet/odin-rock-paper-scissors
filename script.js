@@ -16,11 +16,11 @@ function getHumanChoice() {
 
 function playRound(computerChoice, humanChoice, count, humanCount, computerCount, final, output, results) {
 
-    if (count > 4) {
+    if (count > 5) {
         return;
     }
 
-    if (count === 4) {
+    if (count === 5) {
         results.forEach((result) => {
         if (result == "human") {
             humanCount++;
