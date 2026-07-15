@@ -1,10 +1,3 @@
-let humanCount = 0
-let computerCount = 0
-let count = 0
-let results = []
-
-const output = document.querySelector("#text")
-
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
     if (choice < 1) {
@@ -21,13 +14,13 @@ function getHumanChoice() {
     return choice;
 }
 
-function playRound(computerChoice, humanChoice) {
+function playRound(computerChoice, humanChoice, count, humanCount, computerCount, final, output, results) {
 
-    if (count > 5) {
+    if (count > 4) {
         return;
     }
 
-    if (count === 5) {
+    if (count === 4) {
         results.forEach((result) => {
         if (result == "human") {
             humanCount++;
@@ -43,14 +36,12 @@ function playRound(computerChoice, humanChoice) {
     } else {
         final.textContent = "It's a Tie!"
     }
-    
+
         return;
     }
     
     output.textContent += `You chose: ${humanChoice}\n`;
     output.textContent += `Computer chose: ${computerChoice}\n`;
-
-    
 
     if (computerChoice === humanChoice) {
         output.textContent += "It's a tie!\n\n";
@@ -67,29 +58,42 @@ function playRound(computerChoice, humanChoice) {
     
 }
 
-const rock = document.querySelector("#rock")
-const paper = document.querySelector("#paper")
-const scissors = document.querySelector("#scissors")
-const buttons = document.querySelector(".buttons")
-const times = document.querySelector("#times")
-const final = document.querySelector("#final")
+function playGame(computerChoice, humanChoice) {
 
-rock.addEventListener("click",() => {
-    results.push(playRound(getComputerChoice(), "rock"));
-});
-paper.addEventListener("click",() => {
-    results.push(playRound(getComputerChoice(), "paper"));
-});
-scissors.addEventListener("click",() => {
-    results.push(playRound(getComputerChoice(), "scissors"));
-});
-buttons.addEventListener("click", () => {  
-    count++;
-    if (count > 5){
-        return;
-    }
-    times.textContent = `Times: ${count}`
-});
+    let humanCount = 0
+    let computerCount = 0
+    let count = 0
+    let results = []
+
+    const output = document.querySelector("#text")
+
+    const rock = document.querySelector("#rock")
+    const paper = document.querySelector("#paper")
+    const scissors = document.querySelector("#scissors")
+    const buttons = document.querySelector(".buttons")
+    const times = document.querySelector("#times")
+    const finalVal = document.querySelector("#final")
+
+    rock.addEventListener("click",() => {
+        results.push(playRound(getComputerChoice(), "rock", count, humanCount, computerCount, finalVal, output, results));
+    });
+    paper.addEventListener("click",() => {
+        results.push(playRound(getComputerChoice(), "paper", count, humanCount, computerCount, finalVal, output, results));
+    });
+    scissors.addEventListener("click",() => {
+        results.push(playRound(getComputerChoice(), "scissors", count, humanCount, computerCount, finalVal, output, results));
+    });
+    buttons.addEventListener("click", () => {  
+        count++;
+        if (count > 5){
+            return;
+        }
+        times.textContent = `Times: ${count}`
+    });
+
+}
+
+playGame(getComputerChoice());
 
 
 
