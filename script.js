@@ -20,6 +20,22 @@ function playRound(computerChoice, humanChoice, count, humanCount, computerCount
         return;
     }
 
+    output.textContent += `You chose: ${humanChoice}\n`;
+    output.textContent += `Computer chose: ${computerChoice}\n`;
+
+    if (computerChoice === humanChoice) {
+        output.textContent += "It's a tie!\n\n";
+        return "tie";
+    } else if (computerChoice === "rock" && humanChoice === "paper" || 
+        computerChoice === "paper" && humanChoice === "scissors" || 
+        computerChoice === "scissors" && humanChoice === "rock") {
+        output.textContent += `You Win! ${humanChoice} beats ${computerChoice}\n\n`;
+        return "human";
+    } else {
+        output.textContent += `You Lose! ${computerChoice} beats ${humanChoice}\n\n`;
+        return "computer";
+    }
+
     if (count === 5) {
         results.forEach((result) => {
         if (result == "human") {
@@ -38,22 +54,6 @@ function playRound(computerChoice, humanChoice, count, humanCount, computerCount
     }
 
         return;
-    }
-    
-    output.textContent += `You chose: ${humanChoice}\n`;
-    output.textContent += `Computer chose: ${computerChoice}\n`;
-
-    if (computerChoice === humanChoice) {
-        output.textContent += "It's a tie!\n\n";
-        return "tie";
-    } else if (computerChoice === "rock" && humanChoice === "paper" || 
-        computerChoice === "paper" && humanChoice === "scissors" || 
-        computerChoice === "scissors" && humanChoice === "rock") {
-        output.textContent += `You Win! ${humanChoice} beats ${computerChoice}\n\n`;
-        return "human";
-    } else {
-        output.textContent += `You Lose! ${computerChoice} beats ${humanChoice}\n\n`;
-        return "computer";
     }
     
 }
